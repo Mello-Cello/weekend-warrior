@@ -1,7 +1,7 @@
-gem 'minitest', '>= 5.0.0'
-require 'minitest/reporters'
-require 'minitest/autorun'
-require_relative 'alouette'
+gem "minitest", ">= 5.0.0"
+require "minitest/reporters"
+require "minitest/autorun"
+require_relative "alouette"
 
 Minitest::Reporters.use!
 
@@ -18,8 +18,7 @@ describe Alouette do
     end
 
     it "generates the correct line for the first verse" do
-      skip
-      Alouette.lines_for_verse(0).must_equal ['Et la tête!']
+      Alouette.lines_for_verse(0).must_equal ["Et la tête!"]
     end
 
     it "generates the correct lines for the third verse" do
@@ -27,7 +26,7 @@ describe Alouette do
       expected_lines = [
         "Et les yeux!",
         "Et le bec!",
-        "Et la tête!"
+        "Et la tête!",
       ]
       Alouette.lines_for_verse(2).must_equal expected_lines
     end
@@ -47,7 +46,7 @@ describe Alouette do
       lines.length.must_be :>, 1, "Not enough lines for this test"
 
       2.times do |i|
-        lines[i].start_with?('Je te plumerai').must_equal true, "Line #{i} didn't start with 'Je te plumerai'"
+        lines[i].start_with?("Je te plumerai").must_equal true, "Line #{i} didn't start with 'Je te plumerai'"
       end
     end
 
@@ -71,7 +70,7 @@ describe Alouette do
       lines.length.must_be :>, 5, "Not enough lines for this test"
 
       # Slice off the first 2 and last 3 lines
-      lines = lines[2, lines.length-5]
+      lines = lines[2, lines.length - 5]
 
       lines.each do |line|
         line.start_with?("Et ").must_equal true, "Inner line didn't start with 'Et '"
@@ -102,7 +101,7 @@ A-a-a-ah
   describe "sing" do
     # Load the canonical lyrics from disk
     let(:expected_lyrics) do
-      File.read(File.dirname(__FILE__) + '/alouette_lyrics.txt').strip
+      File.read(File.dirname(__FILE__) + "/alouette_lyrics.txt").strip
     end
 
     it "returns a string" do
