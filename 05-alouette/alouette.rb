@@ -1,11 +1,8 @@
 class Alouette
-  refrain = "Alouette, gentille alouette,
-  Alouette, je te plumerai"
-
-  ET_ARRAY = ["la tête", "le bec", "les yeux", "le cou", "les ailes", "les pattes", "la queue", "le dos"]
-  
-  allouette = "Alouette!"
-  aaaah = "A-a-a-ah"
+  REFRAIN = "Alouette, gentille alouette,\nAlouette, je te plumerai."
+  JE_TE_PLUMERAI = "Je te plumerai "
+  ET_ARRAY = ["la t\u00EAte", "le bec", "les yeux", "le cou", "les ailes", "les pattes", "la queue", "le dos"]
+  BRIDGE = "Alouette!\nAlouette!\nA-a-a-ah"
 
   def self.lines_for_verse(verse_num)
     # return an array of strings, without repeats
@@ -18,40 +15,40 @@ class Alouette
       lines_for_verse.insert(0, "Et #{ET_ARRAY[i]}!")
       i += 1
     end
+
     return lines_for_verse
   end
 
   def self.verse(verse_num)
     # builds the requested verse number
     # returns a string with \n after each line
+
+    this_verse = ""
+
+    2.times do
+      this_verse << "#{JE_TE_PLUMERAI}#{ET_ARRAY[verse_num]}.\n"
+    end
+
+    lines_for_verse(verse_num).each do |line|
+      this_verse << line + "\n" + line + "\n"
+    end
+
+    this_verse << BRIDGE
+
+    return this_verse
   end
 
   def self.sing
     # build the entire song
     # blank line between verses and refrains
     # returns a string
+    song = ""
+    i = 0
+    ET_ARRAY.length.times do
+      song << "#{REFRAIN}\n\n#{self.verse(i)}\n\n"
+      i += 1
+    end
+    song << REFRAIN
+    return song
   end
 end
-
-# -------------------
-
-# et1 = "la tête"
-# et2 = "le bec"
-# et3 = "les yeux"
-# et4 = "le cou"
-# et5 = "les ailes"
-# et6 = "les pattes"
-# et7 = "la queue"
-# et8 = "le dos"
-
-#     attr_reader :refrain, :et_array, :allouette, :aaaah
-
-#   def initialize
-#     refrain = "Alouette, gentille alouette,
-# Alouette, je te plumerai"
-
-#     et_array = ["la tête", "le bec", "les yeux", "le cou", "les ailes", "les pattes", "la queue", "le dos"]
-
-#     allouette = "Alouette!"
-#     aaaah = "A-a-a-ah"
-#   end
