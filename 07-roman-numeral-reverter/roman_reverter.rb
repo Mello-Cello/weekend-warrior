@@ -8,8 +8,6 @@ require "pry"
 
 module Roman
   def self.reverter(string)
-    arabic_num = 0
-
     roman_nums = {
       "M" => 1000,
       "D" => 500,
@@ -21,11 +19,13 @@ module Roman
     }
 
     i = 0
+    arabic_num = 0
 
     return roman_nums[string] if string.length == 1
-
-    repeat = string.length - 1
-    repeat.times do
+    # LOOP THROUGH THE CHARACTERS IN THE STRING
+    # COMPARE EACH TO THE NEXT CHARACTER
+    # ADD OR SUBTRACT AS APPROPRIATE
+    (string.length - 1).times do
       num_this = roman_nums[string[i]]
       num_next = roman_nums[string[i + 1]]
 
@@ -39,7 +39,7 @@ module Roman
       i += 1
     end
 
-    # add the last digit
+    # ADD THE LAST DIGIT
     arabic_num += roman_nums[string[-1]]
 
     return arabic_num
