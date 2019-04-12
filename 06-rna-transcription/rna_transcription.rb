@@ -7,7 +7,7 @@
 # * `A` -> `U`
 
 # NOTE: If I were to refactor this, I would put the above into a hash
-class Complement
+module Complement
   def self.of_dna(string)
     d_to_r = ""
     string.each_char do |let|
